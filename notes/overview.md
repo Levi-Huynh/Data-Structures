@@ -30,17 +30,38 @@ self.next = next_node (property)
 
 (tail always ponts to None instead of another node)
 
-class LinkedList: *from this perspective, dont have direct access to any nodes in middle of list (fast access to first & last element)
+class LinkedList: *from this perspective, dont have direct access to any nodes in middle of list (BUT fast access to first ELEMENT in head and  last element in tail)
 -2nd element in linkedList no knowledge of prev node that refered to it (can't go back to head) 
 -tail not able to refer back to 2nd to last element
 self.head = head_node
 self.tail= tail_node
 
 -Adding:
-H23 > 39 >T5 > N
+H12 > 39 >T5 > N
 list.insert(15)
 
 wrap 15 in linked list node T15 > N
 in this case is the new tail (possible to be head when inserting)
-move 5 (self.next) node pointer to T15
-change tail reference to 15 
+-move 5 (self.next) node pointer to T15
+-change tail reference to 15 
+
+-How would you insert an element into an empty linked list?
+what about a linked list with only one element?
+-How would you iterate along a linked list to reach an element that isn't the head or tail of the list?
+-How would you delete an lement from a linked list
+
+DIFF 
+-LINKED LISTS DONT STORE ELEMENTS CONTIGUOUSLY(next together in sequence) UNLIKE ARRAYS 
+PROS : Easier to insert into & delete from the middle of the linked list compared to an array 
+CON: not as cache-friendly since caches are optimized typically for contiguous memory access (ELEMENTS NOT STORED SEQ NEXT TO EACH OTHER)
+
+LINKED LISTS DONT NEED TO BE ALLOCATED W/ STATIC AMOUNT OF MEMORY UP FRONT
+PROS: We can keep adding elements to linked lists as much as we want, unlike arrays with a static amount of allocated memory
+B/C DONT HAVE TO WORRY ABOUT HOW MUCH SPACE NEEDED TO ALLOCATE TO THAT LINKED LIST 
+JUST needs enough MEMORY TO WRAP NEW ELEMENT IN NEW NODE & THEN HAVE OLD LAST NODE IN LIST REFERENCE NEW LAST NODE IN LIST 
+SO REFERENCES NOT TAKING UP ANY ADDITIONAL MEMORY, JUST TO GET IT WRAPPED UP IN NEW NODE 
+
+It's easier to store data of different sizes in a linked list. An array assumes every element is exactly the same size.
+As you mentioned, it's easier for a linked list to grow organically. An array's size needs to be known ahead of time, or re-created when it needs to grow.
+Shuffling a linked list is just a matter of changing what points to what. Shuffling an array is more complicated and/or takes more memory.
+As long as your iterations all happen in a "foreach" context, you don't lose any performance in iteration.
