@@ -48,3 +48,25 @@ IF LL:
     ADDING TO BACK OR FRONT ADDING IS O(1)
 
 SLL IS GOOD FOR IOT HYPER TIGHT ON MEMORY LIKE IOT DEVICES 
+
+if insert in middle, most likely O(n)
+-insert to back normaly O(1)
+-first, is the most costly to delete in array-> can't just have empty in the front of arr
+
+
+DS OPS: 
+   rt complex             LL                      ARR
+
+-access    :            O(n)                    O(1)
+-insert front           O(1)                    O(n) (if append just add to back, no shifting)
+-insert back            O(1)                    O(1)
+-remove                 O(1)                    O(n)
+-access F orB           O(1)                    
+
+class Node:
+    -value
+    -next
+
+class LL:
+    -head
+    -tail
