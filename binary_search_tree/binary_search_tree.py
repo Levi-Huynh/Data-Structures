@@ -5,31 +5,31 @@ from dll_stack import Stack
 
 
 
-
+#hints: single nodes can still be binary search trees
 ​
-class BinarySearchTree:
+class BinarySearchTree: 
     def __init__(self, value):
-        self.value = value
+        self.value = value #self.value is root node! (has left and right) #value is value your comparing with self.node(root)
         self.left = None
         self.right = None
 ​
     # Insert the given value into the tree
     def insert(self, value):
-        # check if new value is less than current node
+        # check if new value is less than current node #VALUE IS LESS THAN CURRENT NODE (SELF.VALUE)
         if value < self.value:
-            # if there is no self.left value
+            # if there is no self.left value: 
             if not self.left:
                 # set the new left child to be new value
-                self.left = BinarySearchTree(value)
-            else:
-                self.left.insert(value)
-        # the new value is greater than the current node
+                self.left = BinarySearchTree(value) #creates new intance of BInarySearchTree node with (self.value as root, has self.left & self.right)
+            else: #if self.left exists:
+                self.left.insert(value) #recurse call insert on the self.left node (which exists) and does comparison steps above to  value / repeats the process above 
+        # NEW VALUE IS GREATER THAN CURRENT NODE (SELF.NODE):
         # go right
         else:
             if not self.right:
-                self.right = BinarySearchTree(value)
+                self.right = BinarySearchTree(value) #(CREATE NEW BST)
             else: 
-                self.right.insert(value)
+                self.right.insert(value) #RECURSE, THE SELF.RIGHT NODE AND RECURSE THE COMPARISON LOGIC
 ​
     # Return True if the tree contains the value
     # False if it does not
@@ -43,7 +43,7 @@ class BinarySearchTree:
             if not self.left:
                 return False
             else:
-                sub_tree_contains = self.left.contains(target)
+                sub_tree_contains = self.left.contains(target) #IMPORTANT RETURN can be used here b/c `contains` function ASKING FOR RETURN BOOLEAN (INSTEAD OF ADDING NODE)
 ​
         # target is greater, go right
         else:
@@ -64,26 +64,26 @@ class BinarySearchTree:
 ​
         # if we can go right, go right
         # return when we can't go right anymore
-        # if not self.right:
+        # if not self.right: (NOTHING TO RIGHT, SO NOTHING LARGER THAN ROOT NODE SO MAX IS ROOT NODE )
         #     return self.value    
         # return self.right.get_max()
         
         # iterative solution
         current_tree_root = self
-        while current_tree_root.right:
-            current_tree_root = current_tree_root.right
+        while current_tree_root.right: # can also be while current_tree_root is not None: 
+            current_tree_root = current_tree_root.right #REMEMBER LEVI THIS MOVES CURR TO THE RIGHT POSITION AS THE NEW CURR 
 ​
         return current_tree_root.value
 ​
 ​
 ​
-    # Call the function `cb` on the value of each node
+    # Call the function `cb` on the value of each node #cb= another function 
     # You may use a recursive or iterative approach
-    def for_each(self, cb):
+    def for_each(self, cb): #EX OF DFS, PATH WE CHOOSE WE GO ALL THE WAY AND VISIT (ORDER IS 8, 4, 6)
         cb(self.value)    
-​
+​   #STACK nothing goes until every function on top level is done, then next on the stack is executed 
         if self.left:
-            self.left.for_each(cb)
+            self.left.for_each(cb) #recurse for_each #waits for this to finish before if self.right called 
         if self.right:
             self.right.for_each(cb)
 ​
@@ -100,9 +100,9 @@ class BinarySearchTree:
 ​
 ​
 ​
-    # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
-    def bft_print(self, node):
+    # Print the value of every node, starting with the given node, add children per level with Q
+    # in an iterative breadth first traversal (BFS) ORDER WE VISIT NODES (finding everyone on a specific horizontal level)
+    def bft_print(self, node): #Doesn't deal with recursive call QUEUE!
         # create a queue to keep track of nodes
         # place the first node onto queue
 ​
@@ -114,9 +114,9 @@ class BinarySearchTree:
 ​
 ​
 ​
-​
+​   
     # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
+    # in an iterative depth first traversal (DFS) ORDER WE VISIT NODES  (look at node and each child and each their child, go all the way deep to left side, then right side of node in that depth of order)
     def dft_print(self, node):
         # create a stack to keep track of nodes
         # place the first node onto stack

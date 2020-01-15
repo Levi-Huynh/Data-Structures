@@ -32,9 +32,16 @@ class BinarySearchTreeTests(unittest.TestCase):
         self.bst.insert(3)
         self.assertEqual(self.bst.get_max(), 300)
 
+#const fetchSomething("www.google.com", append_to_arr)
+#arr.map((x)=>{stuff})
+#arr.map(lambda x: stuff)
+
+#def append_to_arr(x): 
+    #stuff
+
     def test_for_each(self):
         arr = []
-        cb = lambda x: arr.append(x)
+        cb = lambda x: arr.append(x) #return is implicit with lambda function 
 
         v1 = random.randint(1, 101)
         v2 = random.randint(1, 101)
