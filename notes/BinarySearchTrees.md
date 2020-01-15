@@ -24,6 +24,7 @@ Students will be exposed to some ways in which operations may be improved past l
 -Binary search trees (BST) are an instance of binary trees (BT).
     -Rule/Invarient: If node has left child node (LCN) it points to: _all_ values of LCN (L subtree) is less than Parent node (PN)
           If node has right child node (RCN) it points to: _all_ values of RCN (R subtree) is greater than Parent node (PN)
+          Both sides left and right are BST
           ^^^ EFFICIENT FOR SEARCHING
           ^^^ THIS RULE IS _TRUE_ FOR EVERY (SN) IN TREE   
 
@@ -67,6 +68,29 @@ bst.contains(10)
 - Is inserting into a binary search tree more or less work than inserting into an arry or linked list?  Why?  
 
 
+# DS OPERATIONS
+- Insert
+- Find (in)
+- Delete
+- 
+
+Find 19 in tree
+Start at Root
+Compare Size
+If smaller:
+    go left
+If greater: 
+    go right
+repeat 
+
+if left is taken, go left, repeat
+if left is taken, go right, repeat
+else : create leaf
+
+# BST examples real world:
+-heap sort
+-if want to find or insert at beginning /end LL or DLL etc may be good
+-if just random search, hard to beat BST log n
 
 
 
