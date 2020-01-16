@@ -3,6 +3,11 @@ import unittest
 sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
+#cache looks up results so dont have to redo operations
+#look up is normally O(n)
+#look up for O(1) is dict
+
+#add lru to front , mru to back 
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -13,7 +18,7 @@ class LRUCache:
     """
     def __init__(self, limit=10):
         self.storage = dict()
-        self.limit = limit
+        self.limit = limit #purge from storage
         self.size = 0
         self.order = DoublyLinkedList()
     """
@@ -46,7 +51,7 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        # the key does exist
+        # the key does exist #essentially though don't want 2 of same keys
         if key in self.storage:
             node = self.storage[key]
             # update the value in storage

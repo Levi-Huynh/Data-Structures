@@ -1,9 +1,14 @@
 import sys
-sys.path.append('../queue_and_stack')
+#sys.path.append('../queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
 
-
+#lru_cache(maxsize=500) 
+#least recently used (will purge if not lrc)
+#wraps another function HOC - behind the scenes
+#takes form of key value pairs
+#keep track of priority order can use other DS to help with this
+#MRU etc many types
 
 #hints: single nodes can still be binary search trees
 ​
@@ -90,15 +95,71 @@ class BinarySearchTree:
 ​
     # DAY 2 Project -----------------------
 ​
+#CALL STACK PYTHON KEEPS TRACK OF THIS
+"""
+-in order print (IOP)
+-
+"""
+
+#in order: (left, root, right)
+# 5, 6, 10, 11, 20, 25 in order
+
+# preorder: Root, left, right 
+# pre order: 10, 5, 6, 20, 11, 25
+
+#post order Left, Right, Root 
+# post order : 6, 5, 11, 25, 20, 10 (root node last)
+
+
+
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self, node): 
-        # print the current node
+    def in_order_print(self, node): #low to high value 
         # go left if you can
+        in_order_print(node.left)
+        # print the current node
+        print(node.value)
         # go right if you can
-        pass
+        in_order_print(node.right)
+        return
 ​
-​
+​"""
+
+print(6) returns
+iop(6) (goes to right) (no more to left) so this will pop off
+print(5) returns immediately => value added to stack 
+iop(5) (goes to left) (nothing else to do, so pops off)
+iop(10)
+-----call stack
+
+actual values on this stack above:
+
+add right (first in last out)
+add root
+add left 
+
+
+ 
+node 10 (pop node off) ==> print val => add children to stack (node 5, node 20)
+
+----stack
+
+node 25
+node 11
+------------------> here afer node 20 pops off, children of node 20 will go on before node5 is popped off
+node 5
+---- stack
+
+
+print 25
+iop(25)
+print 11
+iop(11)
+iop(20)
+print 10
+iop(10)
+------call stack
+"""
 ​
     # Print the value of every node, starting with the given node, add children per level with Q
     # in an iterative breadth first traversal (BFS) ORDER WE VISIT NODES (finding everyone on a specific horizontal level)
