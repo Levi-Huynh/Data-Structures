@@ -66,7 +66,7 @@ class DoublyLinkedList:
       if self.head is None:
         self.tail = None
       else:
-        self.head.prev = None
+        self.head.prev = None #else if self.head is not None, prev self.head is none (remove from head)
 ​
       val = node_to_remove.value
       # del node_to_remove
@@ -74,10 +74,37 @@ class DoublyLinkedList:
       return val
 ​
     def add_to_tail(self, value):
-      pass
+      new_nodeT= ListNode(value)
+      self.length +=1
+      if self.tail is None and self.head is None:
+        self.head = new_nodeT
+        self.tail = new_head
+      else:
+        old_tail = self.tail
+        new_nodeT.prev = old_tail
+        old_tail.next = new_nodeT
      
     def remove_from_tail(self):
-      pass
+      if self.tail is None:
+        return
+      
+      nodeT_to_remove = self.tail
+      new_tail = nodeT_to_remove.prev
+      self.tail = new_tail
+      # sever the connection to node_to_remove
+      nodeT_to_remove.prev = None
+      self.length -=1
+
+      if self.tail is None:
+        self.head = None
+      else:
+        self.tail.next = None
+      
+      val1 = nodeT_to_remove.value
+      return val1
+      
+
+
 ​
 ​
 dll = DoublyLinkedList()
