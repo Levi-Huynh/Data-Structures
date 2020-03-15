@@ -4,7 +4,7 @@ construct a linked list and compare the runtime of operations to an array to mak
 
 The linked list data structure (both singly- and doubly-linked variants), while not used nearly as much as arrays, nonetheless is an important one for students to learn because it provides an alternative way to implement a data structure that students should be intimately familiar with at this point in the curriculum.
 
-Whereas arrays store and index elements contiguously, each element of a linked list is stored in a node. Each node then has a reference (or a ‘pointer’) to the next node in the linked list. In this way, linked lists describe lists of things in a recursive fashion, while arrays describe lists of things in an iterative fashion.
+Whereas arrays store and index elements contiguously, each element of a linked list is stored in a node. Each node then has a reference (or a ‘pointer’) to the next node in the linked list. In this way, linked lists describe lists of things in a _recursive fashion_, while arrays describe lists of things in an _iterative_ fashion.
 
 -stores each elements as isolated node 
 -nodes point to next node in list

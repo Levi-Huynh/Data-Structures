@@ -1,6 +1,6 @@
-"""Each ListNode holds a reference to its previous node
-as well as its next node in the List."""
-# only moves in 1 direction, can't move forward
+#from doubly_linked_list import DoublyLinkedList
+import sys
+sys.path.append('../doubly_linked_list')
 
 
 class ListNode:
@@ -181,17 +181,22 @@ class DoublyLinkedList:
         return max_val
 
 
-"""
-first_node = ListNode(100)
-linked_list = DoublyLinkedList(first_node)
-linked_list.add_to_head(1)
-linked_list.add_to_head(2)
-linked_list.add_to_head(3)
-linked_list.add_to_tail(5)
-linked_list.delete(first_node)
-linked_list.remove_from_head()
-linked_list.remove_from_tail()
-linked_list.print()
-print('--------')
-print(len(linked_list))
-"""
+class Stack:
+    def __init__(self):
+        self.size = 0
+        # Why is our DLL a good choice to store our elements?
+        self.storage = DoublyLinkedList()
+
+    def push(self, value):  # add to head (FILO)
+        self.storage.add_to_head(value)
+        self.size += 1
+
+    def pop(self):  # remove from head (first in, last out)
+        if self.size > 0:
+            self.size -= 1
+            return self.storage.remove_from_head()
+        else:
+            return None
+
+    def len(self):
+        return self.size
