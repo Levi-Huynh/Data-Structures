@@ -1,10 +1,7 @@
-from doubly_linked_list import DoublyLinkedList
-from dll_queue import Queue
-from dll_stack import Stack
+# from dll_stack import Stack
+# from dll_queue import Queue
 import sys
-sys.path.append('./queue_and_stack')
-sys.path.append('./doubly_linked_list')
-
+sys.path.append('../queue_and_stack')
 
 # lru_cache(maxsize=500)
 # least recently used (will purge if not lrc)
@@ -169,10 +166,63 @@ class BinarySearchTree:
             print(node.value)
 
 
+"""
+# DAY 2 Project -----------------------
+# CALL STACK PYTHON KEEPS TRACK OF THIS
+-in order print (IOP)
+
+# in order: (left, root, right)
+# 5, 6, 10, 11, 20, 25 in order
+
+# preorder: Root, left, right
+# pre order: 10, 5, 6, 20, 11, 25
+
+# post order Left, Right, Root
+# post order : 6, 5, 11, 25, 20, 10 (root node last)
+
+# Print all the values in order from low to high
+# Hint:  Use a recursive, depth first traversal
+"""
+"""
+print(6) returns
+iop(6) (goes to right) (no more to left) so this will pop off
+print(5) returns immediately => value added to stack
+iop(5) (goes to left) (nothing else to do, so pops off)
+iop(10)
+-----call stack
+
+actual values on this stack above:
+
+add right (first in last out)
+add root
+add left
+
+
+
+node 10 (pop node off) ==> print val => add children to stack (node 5, node 20)
+
+----stack
+
+node 25
+node 11
+------------------> here afer node 20 pops off, children of node 20 will go on before node5 is popped off
+node 5
+---- stack
+
+
+print 25
+iop(25)
+print 11
+iop(11)
+iop(20)
+print 10
+iop(10)
+------call stack
+"""
 # Print the value of every node, starting with the given node, add children per level with Q
 # in an iterative breadth first traversal (BFS) ORDER WE VISIT NODES (finding everyone on a specific horizontal level)
 
-    def bft_print(self, node):  # Doesn't deal with recursive, well,  call QUEUE!
+   def bft_print(self, node):  # Doesn't deal with recursive, well,  call QUEUE!
 
         # create a queue to keep track of nodes
         # place the first node onto queue
@@ -183,7 +233,7 @@ class BinarySearchTree:
 
         queue = Queue()  # queue FIF
         queue.enqueue(node)  # not node.value
-        while queue.len() > 0:
+        while queue is not None:
             curr = queue.dequeue()  # save to temp var
             print(curr.value)  # prints each time dequeues
             if curr.left:  # if the dequeued node has left
@@ -207,26 +257,13 @@ class BinarySearchTree:
         # because that changes the output order
         stack = Stack()
         stack.push(node)  # noe not node.value
-        while stack.len() > 0:
+        while stack is not None:
             curr = stack.pop()  # Pop the top node
             print(curr.value)  # print the popped node
-            if curr.right:
-                # add curr.left to stack #order doesn't matter here?
-                stack.push(curr.right)
-            if curr.left:
-                stack.push(curr.left)
-
-
-"""
-myvar1 = DoublyLinkedList(21)
-myvar = BinarySearchTree(myvar1)
-myvar.insert(19)
-myvar.insert(15)
-myvar.insert(12)
-myvar.insert(20)
-myvar.insert(7)
-myvar.dft_print(21)
-"""
+            if curr_left:
+                stack.push(node.curr.left)  # add curr.left to stack
+            if curr_right:
+                stack.push(node.curr.right)
 
 
 # STRETCH Goals -------------------------
